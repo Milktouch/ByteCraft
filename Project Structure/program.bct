@@ -1,0 +1,12 @@
+#localdata:
+string a ,"aaaaa"
+#globaldata:
+
+
+#code:
+//prints out the value of a
+write a
+//waits for input and puts it into a
+input a
+//defines a dynamic variable b
+define b

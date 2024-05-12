@@ -1,0 +1,6 @@
+//artifact <name> {}
+#filetype artifact
+artifact Point {
+    x:int
+    y:int
+}

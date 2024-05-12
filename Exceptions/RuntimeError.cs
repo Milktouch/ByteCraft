@@ -1,0 +1,18 @@
+public class RuntimeError : Exception
+{
+    public readonly int line;
+    public readonly string lineText;
+    public RuntimeError(string message, int line, string lineText) : base(message)
+    {
+        this.line = line;
+        this.lineText = lineText;
+    }
+    public override string ToString()
+    {
+        return $"RuntimeError: {Message} at line {line}:\n{lineText}";
+    }
+    public void Print()
+    {
+        Console.WriteLine(ToString());
+    }
+}

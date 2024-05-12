@@ -1,0 +1,15 @@
+/Users/milktouch/Documents/GitHub/ByteCraft/bin/Debug/net7.0/ByteCraft
+/Users/milktouch/Documents/GitHub/ByteCraft/bin/Debug/net7.0/ByteCraft.deps.json
+/Users/milktouch/Documents/GitHub/ByteCraft/bin/Debug/net7.0/ByteCraft.runtimeconfig.json
+/Users/milktouch/Documents/GitHub/ByteCraft/bin/Debug/net7.0/ByteCraft.dll
+/Users/milktouch/Documents/GitHub/ByteCraft/bin/Debug/net7.0/ByteCraft.pdb
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.csproj.AssemblyReference.cache
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.GeneratedMSBuildEditorConfig.editorconfig
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.AssemblyInfoInputs.cache
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.AssemblyInfo.cs
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.csproj.CoreCompileInputs.cache
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.dll
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/refint/ByteCraft.dll
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.pdb
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.genruntimeconfig.cache
+/Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ref/ByteCraft.dll

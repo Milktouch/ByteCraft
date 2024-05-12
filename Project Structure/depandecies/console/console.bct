@@ -1,0 +1,6 @@
+#function
+
+write(string text):
+ExecDLL "write",{text}
+
+
