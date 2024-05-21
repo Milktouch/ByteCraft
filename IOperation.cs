@@ -1,9 +1,15 @@
-public abstract class IOperation
+
+using ByteCraft.Variables;
+
+namespace ByteCraft
 {
-    public string name{get;}
-    public string returnType{get;}
-    public List<string> parameterTypes{get;}
-    public abstract Variable Execute(List<Variable> parameters);
+    public abstract class IOperation
+    {
+        public string name { get; }
+        public string returnType { get; }
+        public List<string> parameterTypes { get; }
+        public abstract Variable Execute(List<Variable> parameters);
 
 
+    }
 }

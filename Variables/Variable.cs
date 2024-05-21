@@ -1,38 +1,36 @@
-using System.Dynamic;
+using System.Runtime.CompilerServices;
+using ByteCraft.Data;
 
-public abstract class StaticVariable{
-    public readonly string name;
-    public readonly string type;
-
-    public StaticVariable(string name, string type) {
-        this.name = name;
-        this.type = type;
-    }   
-
-    public abstract void SetValue(Object value);
-    public abstract Object GetValue();
-
-}
-public class Variable
+namespace ByteCraft.Variables
 {
-    public readonly string name;
-    public string type{get;private set;}
-    public dynamic value{get;private set;}
-    public Variable(string name, string type)
+    public abstract class Variable
     {
-        this.name = name;
-        this.type = type;
-    }
-    public void SetValue(dynamic value,string type)
-    {
-        this.value = value;
-        this.type = type;
-    }
-    public Variable Copy()
-    {
-        Variable copy = new Variable(name,type);
-        copy.SetValue(value,type);
-        return copy;
-    }
+        public readonly string name;
+        public Value<dynamic> value { protected set; get;}
+        public Variable(string name, Value<dynamic> value)
+        {
+            this.name = name;
+            this.value = value;
+        }
+        public Variable(string name)
+        {
+            this.name = name;
+            this.value = Value<dynamic>.NULL;
+        }
+        
+        public virtual bool AreEqual(Variable variable){
+            return this.value.AreEqual(variable.value);
+        }
 
+        public bool IsNull(){
+            return this.value.IsNull();
+        }
+
+        public void SetValue(Value<dynamic> value)
+        {
+            this.value = value;
+        }
+
+
+    }
 }

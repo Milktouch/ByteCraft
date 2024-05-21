@@ -1,6 +1,9 @@
-public class CodeFile{
-    public readonly string name;
-    public readonly List<string> lines = new();
-    public readonly Scope fileScope;
-    
+namespace ByteCarft
+{
+    public class CodeFile
+    {
+        public readonly string name;
+        public readonly List<string> lines = new();
+        public readonly Scope fileScope;
+    }
 }

@@ -13,3 +13,11 @@
 /Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.pdb
 /Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ByteCraft.genruntimeconfig.cache
 /Users/milktouch/Documents/GitHub/ByteCraft/obj/Debug/net7.0/ref/ByteCraft.dll
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.AssemblyInfoInputs.cache
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.AssemblyInfo.cs
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.csproj.CoreCompileInputs.cache
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.sourcelink.json
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.dll
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\refint\ByteCraft.dll
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.pdb

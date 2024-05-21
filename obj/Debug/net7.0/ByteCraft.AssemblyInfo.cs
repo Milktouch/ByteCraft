@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ByteCraft")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+825b561be951c2971125d5de0340f41e985adb20")]
 [assembly: System.Reflection.AssemblyProductAttribute("ByteCraft")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ByteCraft")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
