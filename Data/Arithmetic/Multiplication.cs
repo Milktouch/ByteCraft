@@ -1,7 +1,7 @@
 namespace ByteCraft.Data.Arithmetic
 {
-    public interface Multiplication<T>
+    public interface Multiplication<T> where T : Value
     {
-        public Value<T> Multiply(Value<T> val);
+        public T Multiply(T val);
     }
 }

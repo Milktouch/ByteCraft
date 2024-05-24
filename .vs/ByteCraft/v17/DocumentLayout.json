@@ -1,12 +1,54 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A6213902-5578-4BEF-AA0B-B0369ADBA235}|ByteCraft.csproj|c:\\users\\ilay\\source\\repos\\bytecraft\\operations\\operationdefinitions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6213902-5578-4BEF-AA0B-B0369ADBA235}|ByteCraft.csproj|solutionrelative:operations\\operationdefinitions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6213902-5578-4BEF-AA0B-B0369ADBA235}|ByteCraft.csproj|c:\\users\\ilay\\source\\repos\\bytecraft\\operations\\operation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6213902-5578-4BEF-AA0B-B0369ADBA235}|ByteCraft.csproj|solutionrelative:operations\\operation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OperationDefinitions.cs",
+              "DocumentMoniker": "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\Operations\\OperationDefinitions.cs",
+              "RelativeDocumentMoniker": "Operations\\OperationDefinitions.cs",
+              "ToolTip": "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\Operations\\OperationDefinitions.cs",
+              "RelativeToolTip": "Operations\\OperationDefinitions.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAABCwBsAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-24T01:39:45.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Operation.cs",
+              "DocumentMoniker": "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\Operations\\Operation.cs",
+              "RelativeDocumentMoniker": "Operations\\Operation.cs",
+              "ToolTip": "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\Operations\\Operation.cs",
+              "RelativeToolTip": "Operations\\Operation.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-24T01:35:05.527Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

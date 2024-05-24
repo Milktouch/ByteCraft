@@ -1,47 +1,59 @@
+using ByteCraft.Exceptions;
+
 namespace ByteCraft.Data
 {
-    public class Value<T>
+    public abstract class Value
     {
 
-        public static readonly NullValue NULL = new NullValue();
         public string type{get;protected set;}
-        public T value{get;internal set;}
-        internal Value(T value, string type)
+        public dynamic value{get;internal set;}
+        internal Value(dynamic value, string type)
         {
-            if(value == null)
+            if(value == null && type != ValueTypes.NULL)
                 throw new System.ArgumentNullException();
             this.value = value;
             this.type = type;
         }
-        public virtual bool AreEqual(Value<dynamic> value){
-            if(value.IsNull() && !this.IsNull())
-                return false;
-            if(!value.IsNull() && this.IsNull())
-                return false;
-            Value<dynamic> v1 = value;
-            Value<dynamic> v2 = this as Value<dynamic>;
-            while(v1.type == "Reference")
-                v1 = v1.value;
-            while(v2.type == "Reference")
-                v2 = v2.value;
-            return v1.value.Equals(v2.value) && v1.type == v2.type;
+        public virtual bool AreEqual(Value value){
+            //TODO: Implement this
+            return false;
         }
-        public static Value<bool> CreateValue(bool value){
+        public static BooleanValue CreateValue(bool value){
             return new BooleanValue(value);
         }
-        public static Value<decimal> CreateValue(decimal value){
+        public static NumberValue CreateValue(decimal value){
             return new NumberValue(value);
         }
-        public static Value<string> CreateValue(string value){
+        public static StringValue CreateValue(string value){
             return new StringValue(value);
         }
-
         public bool IsNull(){
-            return this.type == NULL.type;
+            return this.type == ValueTypes.NULL;
         }
-        public Value<T> Copy()
+        public static NullValue Null()
         {
-            return new Value<T>(this.value, this.type);
+            return new NullValue();
+        }
+        public abstract Value Copy();
+
+        public bool CanBeCastTo<T>() where T : Value
+        {
+            try
+            {
+                T val = (T)this;
+                return true;
+            }
+            catch (InvalidCastException)
+            {
+                return false;
+            }
+        }
+
+        public T As<T>() where T : Value
+        {
+            if(CanBeCastTo<T>())
+                return (T)this;
+            throw new RuntimeError(type +" cannot be cast into " + typeof(T).Name);
         }
 
     }

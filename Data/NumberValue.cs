@@ -1,59 +1,68 @@
 using System;
 using ByteCraft.Exceptions;
 using ByteCraft.Data.Arithmetic;
-using System.Runtime.CompilerServices;
 using ByteCraft.Data.Equality;
 
 namespace ByteCraft.Data
 {
-    public class NumberValue : Value<decimal> , Addition<decimal>, Subtraction<decimal>, Multiplication<decimal>, Division<decimal>, InEquality<decimal>
+    public class NumberValue : Value , IAddition<NumberValue>, Subtraction<NumberValue>, Multiplication<NumberValue>, Division<NumberValue>, InEquality<NumberValue>
     {
         public NumberValue(decimal value): base(value, ValueTypes.NUMBER)
         {
         }
 
-        public Value<decimal> Add(Value<decimal> val)
+        public NumberValue Add(NumberValue val)
         {
-            return new NumberValue(this.value + val.value);
+            return new NumberValue(this.GetNumber() + val.GetNumber());
         }
 
-        public Value<decimal> Divide(Value<decimal> val)
+        public override Value Copy()
         {
-            if (val.value == 0)
+            return new NumberValue(this.value);
+        }
+
+        public NumberValue Divide(NumberValue val)
+        {
+            if (val.GetNumber() == 0)
             {
-                throw new RuntimeError("Division by zero");
+                throw new RuntimeError("Cannot divide by Zero");
             }
-            return new NumberValue(this.value / val.value);
+            return new NumberValue(this.GetNumber() / val.GetNumber());
         }
 
-        public Value<bool> GreaterThan(Value<decimal> value)
+        public decimal GetNumber()
         {
-            return new BooleanValue(this.value > value.value);
+            return this.value;
         }
 
-        public Value<bool> GreaterThanOrEqual(Value<decimal> value)
+        public BooleanValue GreaterThan(NumberValue value)
         {
-            return new BooleanValue(this.value >= value.value);
+            return new BooleanValue(this.GetNumber() > value.GetNumber());
         }
 
-        public Value<bool> LessThan(Value<decimal> value)
+        public BooleanValue GreaterThanOrEqual(NumberValue value)
         {
-            return new BooleanValue(this.value < value.value);
+           return new BooleanValue(this.GetNumber() >= value.GetNumber());
         }
 
-        public Value<bool> LessThanOrEqual(Value<decimal> value)
+        public BooleanValue LessThan(NumberValue value)
         {
-            return new BooleanValue(this.value <= value.value);
+            return new BooleanValue(this.GetNumber() < value.GetNumber());
         }
 
-        public Value<decimal> Multiply(Value<decimal> val)
+        public BooleanValue LessThanOrEqual(NumberValue value)
         {
-            return new NumberValue(this.value * val.value);
+            return new BooleanValue(this.GetNumber() <= value.GetNumber());
         }
 
-        public Value<decimal> Subtract(Value<decimal> val)
+        public NumberValue Multiply(NumberValue val)
         {
-            return new NumberValue(this.value - val.value);
+            return new NumberValue(this.GetNumber() * val.GetNumber());
+        }
+
+        public NumberValue Subtract(NumberValue val)
+        {
+            return new NumberValue(this.GetNumber() - val.GetNumber());
         }
     }
 }

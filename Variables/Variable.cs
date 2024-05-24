@@ -6,31 +6,28 @@ namespace ByteCraft.Variables
     public abstract class Variable
     {
         public readonly string name;
-        public Value<dynamic> value { protected set; get;}
-        public Variable(string name, Value<dynamic> value)
+        internal Variable(string name)
         {
+            if (name == null)
+            {
+                throw new System.ArgumentNullException("name");
+            }
             this.name = name;
-            this.value = value;
         }
-        public Variable(string name)
+        public virtual bool AreEqual(Variable variable)
         {
-            this.name = name;
-            this.value = Value<dynamic>.NULL;
-        }
-        
-        public virtual bool AreEqual(Variable variable){
-            return this.value.AreEqual(variable.value);
+            return this.GetValue().AreEqual(variable.GetValue());
         }
 
-        public bool IsNull(){
-            return this.value.IsNull();
-        }
-
-        public void SetValue(Value<dynamic> value)
+        public virtual bool IsNull()
         {
-            this.value = value;
+            return GetValue().IsNull();
         }
 
+        public abstract void SetValue(Value value);
+        public abstract Value GetValue();
+        public abstract ReferenceVariable Ref();
+        public abstract Variable Copy(string name);
 
     }
 }

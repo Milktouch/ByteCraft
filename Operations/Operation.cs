@@ -1,14 +1,14 @@
-
+using ByteCraft.Data;
 using ByteCraft.Variables;
 
-namespace ByteCraft
+namespace ByteCraft.Operations
 {
-    public abstract class IOperation
+    public abstract class Operation
     {
         public string name { get; }
         public string returnType { get; }
         public List<string> parameterTypes { get; }
-        public abstract Variable Execute(List<Variable> parameters);
+        public abstract Value Execute(List<Variable> parameters);
 
 
     }

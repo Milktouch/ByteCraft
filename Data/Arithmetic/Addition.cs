@@ -1,6 +1,6 @@
 namespace ByteCraft.Data.Arithmetic{
-    public interface Addition<T>
+    public interface IAddition<T> where T : Value
     {
-        public Value<T> Add(Value<T> val);
+        public T Add(T val);
     } 
 }

@@ -1,10 +1,10 @@
 namespace ByteCraft.Data
 {
-    public interface Indexable<T>
+    public interface IIndexable<T> where T : Value
     {
-        public void SetValueAt(int index, Value<T> value);
-        public Value<T> GetValueAt(int index);
+        public void SetValueAt(NumberValue index , T value);
+        public Value GetValueAt(NumberValue index);
         public NumberValue Length();
-        
+
     }
 }
