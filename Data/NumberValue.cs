@@ -2,10 +2,11 @@ using System;
 using ByteCraft.Exceptions;
 using ByteCraft.Data.Arithmetic;
 using ByteCraft.Data.Equality;
+using ByteCraft.Data.OtherQualities;
 
 namespace ByteCraft.Data
 {
-    public class NumberValue : Value , IAddition<NumberValue>, Subtraction<NumberValue>, Multiplication<NumberValue>, Division<NumberValue>, InEquality<NumberValue>
+    public class NumberValue : Value , IAddition<NumberValue>, Subtraction<NumberValue>, Multiplication<NumberValue>, Division<NumberValue>, InEquality<NumberValue>,IStringable
     {
         public NumberValue(decimal value): base(value, ValueTypes.NUMBER)
         {
@@ -63,6 +64,11 @@ namespace ByteCraft.Data
         public NumberValue Subtract(NumberValue val)
         {
             return new NumberValue(this.GetNumber() - val.GetNumber());
+        }
+
+        public StringValue ToStr()
+        {
+            return new StringValue(this.value.ToString());
         }
     }
 }

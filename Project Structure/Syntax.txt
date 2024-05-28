@@ -1,0 +1,54 @@
+﻿Bytecarft Syntax
+
+
+// This means a comment
+
+# This means a section split for the interpreter 
+examples:
+
+#data
+
+#code
+
+#function
+
+@ This means a special behavior 
+examples:
+
+@if 
+@condition
+code here should return a boolen value as result in the final line
+@end condition
+
+@else
+
+@end if
+
+@loop
+@condition 
+code here should return a boolean value as result in the final line
+@end condition
+
+@end loop
+
+variables
+variables are declared as follows:
+<variable name> = <value>
+examples:
+var = 5
+var2 = "hello"
+var3 = 5.5
+var4 = true
+
+operations
+operations are used the following way:
+<operation name> <parameter1>, <parameter2>, <parameter3>, ...
+examples:
+write "hello"
+add 5, 5
+
+every operation returns a value, the value is automatically stored in a variable called "Result"
+you can use another variable to permanently store the result
+examples:
+add 5, 5
+var = Result // var will be 10

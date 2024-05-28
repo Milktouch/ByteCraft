@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using ByteCraft.Data;
+using ByteCraft.Scopes;
 
 namespace ByteCraft.Variables
 {
@@ -10,9 +11,14 @@ namespace ByteCraft.Variables
         {
             if (name == null)
             {
-                throw new System.ArgumentNullException("name");
+                this.name = "";
             }
-            this.name = name;
+            else
+            {
+                this.name = name;
+                Scope.CurrentScope.AddVariable(this);
+            }
+            
         }
         public virtual bool AreEqual(Variable variable)
         {

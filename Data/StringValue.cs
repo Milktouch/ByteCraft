@@ -1,10 +1,11 @@
+using ByteCraft.Data.OtherQualities;
 using ByteCraft.Exceptions;
 
 namespace ByteCraft.Data
 {
-    public class StringValue : Value ,IIndexable<StringValue>
+    public class StringValue : Value ,IIndexable<StringValue> , IStringable
     {
-        internal StringValue(string value) : base(value, ValueTypes.STRING)
+        public StringValue(string value) : base(value, ValueTypes.STRING)
         {
         }
 
@@ -42,6 +43,11 @@ namespace ByteCraft.Data
         public string GetStringValue()
         {
             return this.value;
+        }
+
+        public StringValue ToStr()
+        {
+            return this;
         }
     }
 }

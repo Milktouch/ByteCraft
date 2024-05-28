@@ -6,7 +6,7 @@ namespace ByteCraft.Data
     {
 
         public string type{get;protected set;}
-        public dynamic value{get;internal set;}
+        public dynamic value{get;protected set;}
         internal Value(dynamic value, string type)
         {
             if(value == null && type != ValueTypes.NULL)

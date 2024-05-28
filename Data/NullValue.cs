@@ -10,5 +10,6 @@ namespace ByteCraft.Data
         {
             return new NullValue();
         }
+
     }
 }
