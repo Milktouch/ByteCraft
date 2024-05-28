@@ -1,7 +1,7 @@
 namespace ByteCraft.Data.Arithmetic
 {
-    public interface Subtraction<T>
+    public interface Subtraction<T> where T : Value
     {
-        public Value<T> Subtract(Value<T> val);
+        public T Subtract(T val);
     }
 }

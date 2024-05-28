@@ -21,3 +21,10 @@ C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.sourcelink.json
 C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.dll
 C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\refint\ByteCraft.dll
 C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.pdb
+C:\Users\Ilay\source\repos\ByteCraft\bin\Debug\net7.0\ByteCraft.exe
+C:\Users\Ilay\source\repos\ByteCraft\bin\Debug\net7.0\ByteCraft.deps.json
+C:\Users\Ilay\source\repos\ByteCraft\bin\Debug\net7.0\ByteCraft.runtimeconfig.json
+C:\Users\Ilay\source\repos\ByteCraft\bin\Debug\net7.0\ByteCraft.dll
+C:\Users\Ilay\source\repos\ByteCraft\bin\Debug\net7.0\ByteCraft.pdb
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ByteCraft.genruntimeconfig.cache
+C:\Users\Ilay\source\repos\ByteCraft\obj\Debug\net7.0\ref\ByteCraft.dll

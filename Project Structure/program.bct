@@ -1,12 +1,12 @@
-#localdata:
-string a ,"aaaaa"
-#globaldata:
-
+@import IO
 
 #code:
 //prints out the value of a
+//op result will be NULL
 write a
 //waits for input and puts it into a
-input a
-//defines a dynamic variable b
-define b
+//op result will be user input
+input
+//defines a variable - b and sets it to 0
+//variables are dynamically typed
+set b , 0

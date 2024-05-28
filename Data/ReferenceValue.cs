@@ -1,24 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace ByteCraft.Data
 {
-    public class ReferenceValue : Value<Value<dynamic>>
+    public class ReferenceValue : Value
     {
-        public ReferenceValue(Value<dynamic> value) : base(value, ValueTypes.REFERENCE)
-        {
+        public ReferenceValue(Value v) : base(v,ValueTypes.REFERENCE)
+        { 
         }
-
-        public Value<dynamic> DereferenceValue()
+        public override Value Copy()
         {
-            Value<dynamic> value = this.value;
-            while (value.type == "Reference")
-            {
-                value = value.value;
-            }
-            return value;
+            return this;
         }
-
-        public void Assign(Value<dynamic> newValue)
-        {
-            this.DereferenceValue().value = newValue.value;
-        } 
     }
 }
