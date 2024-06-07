@@ -14,8 +14,7 @@ namespace ByteCraft.Data.Memory
         internal int chunkIndex;
         internal int offset;
         internal int size;
-        internal int referenceCount = 1;
-
+        internal int referenceCount { get{ return referenceCount; }  set { if (value == 0) Free(); referenceCount = value; } }
         public string ToString()
         {
             return chunkIndex + ":" + offset + "#" + size;
@@ -26,7 +25,6 @@ namespace ByteCraft.Data.Memory
             this.offset = offset;
             this.size = size;
         }
-
         internal MemoryAddress(string address)
         {
             if(_addressRegex.IsMatch(address) == false)
@@ -38,9 +36,22 @@ namespace ByteCraft.Data.Memory
             offset = int.Parse(parts[1]);
             size = int.Parse(parts[2]);
         }
-        internal byte[] GetBytes()
+        private byte[] GetBytes()
         {
-            return new byte[size];
+            return MemoryChunk.GetChunk(chunkIndex).GetBytes(offset, size);
+        }
+        internal void Write(Value v)
+        {
+
+        }
+        internal Value Read()
+        {
+            byte[] bytes = GetBytes();
+        }
+
+        private void Free()
+        {
+            MemoryChunk.GetChunk(chunkIndex).Free(offset, size);
         }
     }
 }

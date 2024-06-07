@@ -9,13 +9,11 @@ namespace ByteCraft.Data.Memory
     internal class MemoryChunk
     {
         private static List<MemoryChunk> _chunks = new List<MemoryChunk>();
-
         public static readonly int DefaultSize = 128;
         internal static bool ValidateAddressSize(int size)
         {
             return size > 0;
         }
-
         private int _chunkIndex;
         private byte[] _data;
         internal int _freeMem { get; private set; }
@@ -36,7 +34,6 @@ namespace ByteCraft.Data.Memory
             _chunks.Add(this);
             _freeMem = DefaultSize;
         }
-
         public MemoryAddress Allocate(int size)
         {
             if (size < 1)
@@ -67,7 +64,6 @@ namespace ByteCraft.Data.Memory
             _freeMem -= size;
             return memoryAddress;
         }
-
         public byte[] Read(MemoryAddress address)
         {
             if (address.size + address.offset > _data.Length)
@@ -115,7 +111,6 @@ namespace ByteCraft.Data.Memory
                 start = index;
             }
         }
-
         public void Free(MemoryAddress address)
         {
             if (_allocations.ContainsKey(address.offset))
@@ -124,8 +119,6 @@ namespace ByteCraft.Data.Memory
             _allocations.Remove(address.offset);
             _freeMem += address.size;
         }
-
-
         public void PrintChunk()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -154,7 +147,6 @@ namespace ByteCraft.Data.Memory
             Console.ResetColor();
             Console.WriteLine();
         }
-
         public void Write(MemoryAddress address, byte[] data)
         {
             if (address.size != data.Length)
@@ -168,5 +160,11 @@ namespace ByteCraft.Data.Memory
                 _data[address.offset + i] = data[i];
             }
         }   
+
+        public static MemoryChunk GetChunk(int index)
+        {
+
+            return _chunks[index];
+        }
     }
 }

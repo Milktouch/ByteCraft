@@ -14,6 +14,10 @@ namespace ByteCraft.Data
             this.value = value;
             this.type = type;
         }
+        internal Value(string type)
+        {
+            this.type = type;
+        }
         public virtual bool AreEqual(Value value){
             //TODO: Implement this
             return false;
