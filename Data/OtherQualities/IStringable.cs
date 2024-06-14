@@ -8,6 +8,6 @@ namespace ByteCraft.Data.OtherQualities
 {
     public interface IStringable
     {
-        public StringValue ToStr();
+        public string ToString();
     }
 }

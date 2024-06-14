@@ -19,7 +19,7 @@ namespace ByteCraft.Data
 
         public override Value Copy()
         {
-            return new NumberValue(this.value);
+            return new NumberValue((decimal)this.value);
         }
 
         public NumberValue Divide(NumberValue val)
@@ -33,7 +33,7 @@ namespace ByteCraft.Data
 
         public decimal GetNumber()
         {
-            return this.value;
+            return (decimal)this.value;
         }
 
         public BooleanValue GreaterThan(NumberValue value)
@@ -66,9 +66,9 @@ namespace ByteCraft.Data
             return new NumberValue(this.GetNumber() - val.GetNumber());
         }
 
-        public StringValue ToStr()
+        public new string ToString()
         {
-            return new StringValue(this.value.ToString());
+            return this.value.ToString();
         }
     }
 }

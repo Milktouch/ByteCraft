@@ -5,8 +5,8 @@ namespace ByteCraft.Data
     public abstract class Value
     {
 
-        public string type{get;protected set;}
-        public dynamic value{get;protected set;}
+        public readonly string type;
+        protected dynamic value{get;set;}
         internal Value(dynamic value, string type)
         {
             if(value == null && type != ValueTypes.NULL)
@@ -19,8 +19,9 @@ namespace ByteCraft.Data
             this.type = type;
         }
         public virtual bool AreEqual(Value value){
-            //TODO: Implement this
-            return false;
+            if(value.type != this.type)
+                return false;
+            return value.value == this.value;
         }
         public static BooleanValue CreateValue(bool value){
             return new BooleanValue(value);

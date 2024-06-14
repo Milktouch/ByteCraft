@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace ByteCraft.Parsing
 {
-    enum LineType
+    internal enum LineType
     {
         VariableAssignment,
         Operation,
         SpecialAction,
+        Import,
         Section
     }
     internal class CodeLine
@@ -20,6 +21,7 @@ namespace ByteCraft.Parsing
         public int lineNumber { get; internal set; }
         public string lineDescription { get; internal set; }
         public LineType lineType { get; internal set;}
+        public Dictionary<string, Object> extraInfo { get; internal set; } = new Dictionary<string, Object>();
         
     }
 }

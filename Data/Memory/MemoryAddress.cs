@@ -38,7 +38,7 @@ namespace ByteCraft.Data.Memory
         }
         private byte[] GetBytes()
         {
-            return MemoryChunk.GetChunk(chunkIndex).GetBytes(offset, size);
+            return MemoryChunk.GetChunk(chunkIndex).Read(this);
         }
         internal void Write(Value v)
         {
@@ -47,11 +47,12 @@ namespace ByteCraft.Data.Memory
         internal Value Read()
         {
             byte[] bytes = GetBytes();
+            return null;
         }
 
         private void Free()
         {
-            MemoryChunk.GetChunk(chunkIndex).Free(offset, size);
+            MemoryChunk.GetChunk(chunkIndex).Free(this);
         }
     }
 }

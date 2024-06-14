@@ -9,17 +9,17 @@ namespace ByteCraft.Data{
 
         public bool GetBoolean()
         {
-            return this.value;
+            return (bool)this.value;
         }
 
         public override Value Copy()
         {
-            return new BooleanValue(this.value);
+            return new BooleanValue((bool)this.value);
         }
 
-        public StringValue ToStr()
+        public new string ToString()
         {
-            return new StringValue(this.value.ToString());
+            return this.value.ToString();
         }
     }
 }

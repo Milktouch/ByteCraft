@@ -1,20 +1,27 @@
 ﻿
 
+using ByteCraft;
+using ByteCraft.BasicOperations;
+using ByteCraft.Data;
 using ByteCraft.Data.Memory;
+using ByteCraft.Operations;
+using ByteCraft.Scopes;
 
-MemoryChunk chunk = new MemoryChunk();
 
-MemoryAddress address = chunk.Allocate(10);
-chunk.PrintChunk();
-MemoryAddress address2 = chunk.Allocate(10);
-chunk.PrintChunk();
-chunk.Free(address);
-chunk.PrintChunk();
-address = chunk.Allocate(15);
-chunk.PrintChunk();
-chunk.MoveMemory();
-chunk.PrintChunk();
+Variable var = new Variable("msg");
+var.SetValue(new StringValue("enter your birthday"));
 
+OperationDefinition? writeOp = OperationDefinition.GetOperationDefinitionFromType(typeof(Write));
+OperationDefinition? inputOp = OperationDefinition.GetOperationDefinitionFromType(typeof(Input));
+
+
+Value result = writeOp.ExecuteOperation(new Value[] { var.GetValue() });
+
+result = inputOp.ExecuteOperation(new Value[] {});
+
+var.SetValue(result);
+
+result = writeOp.ExecuteOperation(new Value[] { var.GetValue() });
 
 
 

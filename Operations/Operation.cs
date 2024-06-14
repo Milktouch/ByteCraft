@@ -1,26 +1,34 @@
 using ByteCraft.Data;
-using ByteCraft.Variables;
 
 namespace ByteCraft.Operations
 {
     public abstract class Operation
     {
-        public string name { get; protected set; }
-        internal Variable[] arguments { get;set; } 
-        public Value GetArgumentByName(string name)
+        public Value[] arguments { get;private set; } = new Value[0];
+        /// <summary>
+        ///  This method returns the argument associated with the provided index
+        /// </summary>
+        /// <param name="index"> The argument index (starts at 0)</param>
+        /// <returns>The argument associated with the index as a Value object. If the index is outside the bounds this method will return null</returns>
+        public Value? GetArgument(int index)
         {
-            foreach (var arg in arguments)
+            if(index < 0 || index >= arguments.Length)
             {
-                if (arg.name == name)
-                {
-                    return arg.GetValue();
-                }
+                return null;
             }
-            return Value.Null();
+            return arguments[index];
+        }
+        internal void SetArguments(Value[] args)
+        {
+            if (args==null)
+            {
+                arguments = new Value[0];
+            }
+            else
+            {
+                arguments = args;
+            }
         }
         public abstract Value Execute();
-
-
-
     }
 }

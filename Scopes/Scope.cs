@@ -1,57 +1,37 @@
 
 using ByteCarft;
-using ByteCraft.Variables;
 
 namespace ByteCraft.Scopes
 {
-    public class Scope
+    internal class Scope
     {
-        //static
-        private static Stack<Scope> scopeStack = new Stack<Scope>();
-        public static Scope CurrentScope
-        {
-            get
-            {
-                if (scopeStack.Count == 0)
-                    return null;
-                return scopeStack.Peek();
-            }
-        }
-        public static Scope Get()
-        {
-            return CurrentScope;
-        }
-        //instance
-        private readonly Dictionary<string, Variable> variables = new Dictionary<string, Variable>();
         public Variable Result { get; internal set; }
-        public CodeFile file { get; private set; }
-        public long line { get; private set; }
-        public Scope(CodeFile file, long line)
+        internal CodeFile file { get; private set; }
+        internal long line { get; private set; }
+        internal readonly long startLine;
+        internal readonly long endLine;
+        internal Scope(CodeFile file, long line)
         {
-            scopeStack.Push(this);
-            Result = new ValueVariable("Result");
+            Result = new Variable("Result");
+            AddVariable(Result);
             this.file = file;
-            this.line = line;
+            this.startLine = line;
         }
 
         internal void AddVariable(Variable variable)
         {
-            variables.Add(variable.name, variable);
+            file.fileScope.variables.Add(variable.name, variable);
         }
 
         internal Variable GetVariable(string name)
         {
-            if (variables.ContainsKey(name))
+            if (file.fileScope.variables.ContainsKey(name))
             {
-                return variables[name];
+                return file.fileScope.variables[name];
             }
-            return new ValueVariable(name);
+            return new Variable(name);
         }
 
-        internal void Exit()
-        {
-            scopeStack.Pop();
-        }
 
     }
 }

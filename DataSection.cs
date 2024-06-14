@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
-using ByteCraft.Variables;
 
 namespace ByteCraft
 {
-    public class DataSection
+    internal class DataSection
     {
         public readonly List<Variable> variables = new();
         public DataSection(List<string> data, int firstLine)

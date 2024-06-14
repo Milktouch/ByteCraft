@@ -1,7 +1,7 @@
 
 namespace ByteCarft
 {
-    public class Line
+    internal class Line
     {
         public readonly string text;
         public readonly int lineNumber;

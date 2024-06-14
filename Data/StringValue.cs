@@ -3,7 +3,7 @@ using ByteCraft.Exceptions;
 
 namespace ByteCraft.Data
 {
-    public class StringValue : Value ,IIndexable<StringValue> , IStringable
+    public class StringValue : Value, IIndexable<StringValue>, IStringable
     {
         public StringValue(string value) : base(value, ValueTypes.STRING)
         {
@@ -11,7 +11,7 @@ namespace ByteCraft.Data
 
         public override Value Copy()
         {
-            return new StringValue(this.value);
+            return new StringValue((String)this.value);
         }
 
         public Value GetValueAt(NumberValue val)
@@ -45,9 +45,9 @@ namespace ByteCraft.Data
             return this.value;
         }
 
-        public StringValue ToStr()
+        public new string ToString()
         {
-            return this;
+            return this.value;
         }
     }
 }

@@ -1,26 +1,30 @@
 using ByteCraft.Data;
 using ByteCraft.Exceptions;
 using ByteCraft.Scopes;
-using ByteCraft.Variables;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ByteCraft.Parsing
 {
-    public static class Parser
+    internal static class Parser
     {
         // Parameter and Value Regex
-        public static readonly Regex NumberRegex = new Regex(@"^[+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*)(?:[eE][+-]?\d+)?$");
-        public static readonly Regex VariableNameRegex = new Regex(@"^\s*(?!true\s*$|True\s*$|false\s*$|False\s*$)([a-zA-Z_][a-zA-Z0-9_]*)\s*$");
-        public static readonly Regex StringRegex = new Regex("""^\s*"((?:[^"\\]|(?:\\\\)|(?:\\\\)*\\.{1})*)"\s*$""");
-        public static readonly Regex BooleanRegex = new Regex(@"^\s*(true|false|True|False)\s*$");
+        public static readonly Regex NumberRegex = new Regex(@"^[+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*)(?:[eE][+-]?\d+)?$",RegexOptions.Compiled);
+        public static readonly Regex VariableNameRegex = new Regex(@"^\s*(?!true\s*$|True\s*$|false\s*$|False\s*$)([a-zA-Z_][a-zA-Z0-9_]*)\s*$", RegexOptions.Compiled);
+        public static readonly Regex StringRegex = new Regex("""^\s*"((?:[^"\\]|(?:\\\\)|(?:\\\\)*\\.{1})*)"\s*$""", RegexOptions.Compiled);
+        public static readonly Regex BooleanRegex = new Regex(@"^\s*(true|false|True|False)\s*$", RegexOptions.Compiled);
 
         //variable assignment
-        public static readonly Regex VariableAssignmentRegex = new Regex(@"^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+?)\s*$");
+        public static readonly Regex VariableAssignmentRegex = new Regex(@"^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+?)\s*$", RegexOptions.Compiled);
         //operation with arguments
-        public static readonly Regex OperationWithArgumentsRegex = new Regex(@"^([a-zA-Z_][a-zA-Z0-9_]*)\s+(.*?)\s*$");
+        public static readonly Regex OperationWithArgumentsRegex = new Regex(@"^([a-zA-Z_][a-zA-Z0-9_]*)\s+(.*?)\s*$", RegexOptions.Compiled);
         //operation without arguments
-        public static readonly Regex OperationWithoutArgumentsRegex = new Regex(@"^([a-zA-Z_][a-zA-Z0-9_]*)\s*$");
+        public static readonly Regex OperationWithoutArgumentsRegex = new Regex(@"^([a-zA-Z_][a-zA-Z0-9_]*)\s*$", RegexOptions.Compiled);
+
+        //special actions
+        //import 
+        public static readonly Regex ImportRegex = new Regex(@"^@import\s+(.+?)\s*$");
 
 
         public static class SectionParser
@@ -41,6 +45,15 @@ namespace ByteCraft.Parsing
             internal static CodeLine ParseSpecialAction(string line)
             {
                 CodeLine codeLine = new CodeLine();
+                //switch on the first word after the @
+                if(ImportRegex.IsMatch(line))
+                {
+                    Match match = ImportRegex.Match(line);
+                    codeLine.lineDescription = $"import {match.Groups[1].Value}";
+                    codeLine.lineType = LineType.SpecialAction;
+                    codeLine.extraInfo.Add("filename", match.Groups[1].Value);
+                    return codeLine;
+                }
                 return codeLine;
             }
         }
@@ -74,6 +87,7 @@ namespace ByteCraft.Parsing
                 {
                     values.Add(VariableParser.ParseValue(arg.Trim()));
                 }
+                codeLine.extraInfo.Add("arguments", values);
                 return codeLine;
             }
 
@@ -113,13 +127,12 @@ namespace ByteCraft.Parsing
                 return codeLine;
             }
 
-
             internal static Value ParseValue(string value)
             {
                 value = value.Trim();
                 if (NumberRegex.IsMatch(value))
                 {
-                    decimal number = decimal.Parse(value);
+                    decimal number = decimal.Parse(value,NumberStyles.Any);
                     return new NumberValue(number);
                 }
                 if (VariableNameRegex.IsMatch(value))
