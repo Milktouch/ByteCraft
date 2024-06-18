@@ -11,5 +11,9 @@ namespace ByteCraft.Data
             return new NullValue();
         }
 
+        public override string ToString()
+        {
+            return "null";
+        }
     }
 }

@@ -4,6 +4,7 @@ using ByteCraft.Scopes;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using ByteCraft;
 
 namespace ByteCraft.Parsing
 {
@@ -31,7 +32,7 @@ namespace ByteCraft.Parsing
         {
             internal static CodeLine ParseSection(string line)
             {
-                CodeLine codeLine = new CodeLine();
+                CodeLine codeLine = new CodeLine(LineType.Section);
                 //switch on the first word after the #
                 switch (line.Split(' ')[0].Substring(1))
                 {
@@ -44,87 +45,84 @@ namespace ByteCraft.Parsing
         {
             internal static CodeLine ParseSpecialAction(string line)
             {
-                CodeLine codeLine = new CodeLine();
+                
                 //switch on the first word after the @
                 if(ImportRegex.IsMatch(line))
                 {
                     Match match = ImportRegex.Match(line);
-                    codeLine.lineDescription = $"import {match.Groups[1].Value}";
-                    codeLine.lineType = LineType.SpecialAction;
-                    codeLine.extraInfo.Add("filename", match.Groups[1].Value);
+                    ImportLine codeLine = new ImportLine(match.Groups[1].Value);
                     return codeLine;
                 }
-                return codeLine;
+                throw new RuntimeError($"""Special action "{line}" is not a valid special action""");
             }
         }
-        public class OperationParser
+        public static class OperationParser
         {
             internal static CodeLine ParseOperation(string line)
             {
 
                 if (OperationWithArgumentsRegex.IsMatch(line))
                 {
-                    CodeLine codeLine = ParseArguments(OperationWithArgumentsRegex.Match(line).Groups[2].Value);
-                    codeLine.lineDescription = $"operation {OperationWithArgumentsRegex.Match(line).Groups[1].Value} with arguments {OperationWithArgumentsRegex.Match(line).Groups[2].Value}";
-                    codeLine.lineType = LineType.Operation;
+                    Match match = OperationWithArgumentsRegex.Match(line);
+                    List<Value> arguments = ParseArguments(match.Groups[2].Value);
+                    String operationName = match.Groups[1].Value;
+                    OperationLine codeLine = new OperationLine(operationName, arguments);
                     return codeLine;
                 }
                 if (OperationWithoutArgumentsRegex.IsMatch(line))
                 {
-                    CodeLine codeLine = new CodeLine();
-                    codeLine.lineDescription = $"""operation "{line}" without arguments""";
-                    codeLine.lineType = LineType.Operation;
+                    OperationLine codeLine = new OperationLine(line, new List<Value>());
                     return codeLine;
                 }
                 throw new RuntimeError($"""Operation "{line}" is not a valid operation""");
             }
-            internal static CodeLine ParseArguments(string arguments)
+            internal static List<Value> ParseArguments(string arguments)
             {
-                CodeLine codeLine = new CodeLine();
                 List<string> args = SplitByCharNotInQuotes(arguments, ',');
                 List<Value> values = new List<Value>();
                 foreach (string arg in args)
                 {
                     values.Add(VariableParser.ParseValue(arg.Trim()));
                 }
-                codeLine.extraInfo.Add("arguments", values);
-                return codeLine;
+                return values;
             }
 
         }
         internal static CodeLine ParseLine(string line)
         {
             line = line.Trim();
+            CodeLine codeLine;
             if (line.StartsWith("#"))
             {
-                return SectionParser.ParseSection(line);
+                codeLine=SectionParser.ParseSection(line);
             }
-            if (line.StartsWith("@"))
+            else if (line.StartsWith("@"))
             {
-                return SpecialActionParser.ParseSpecialAction(line);
+                codeLine=SpecialActionParser.ParseSpecialAction(line);
             }
-            if (VariableAssignmentRegex.IsMatch(line))
+            else if (VariableAssignmentRegex.IsMatch(line))
             {
-                return VariableParser.ParseVariable(line);
+                codeLine=VariableParser.ParseVariable(line);
             }
-            return OperationParser.ParseOperation(line);
+            else
+            {
+                codeLine = OperationParser.ParseOperation(line);
+            }
+            return codeLine;
         }
         public static class VariableParser
         {
             // <variable_name> = <value>
             internal static CodeLine ParseVariable(string line)
             {
-                CodeLine codeLine = new CodeLine();
-                GroupCollection groups = VariableAssignmentRegex.Match(line).Groups;
-                string variableName = groups[1].Value;
+                Match match = VariableAssignmentRegex.Match(line);
+                string variableName = match.Groups[1].Value;
                 if (!VariableNameRegex.IsMatch(variableName))
                 {
                     throw new RuntimeError($"Variable name ({variableName}) is not a valid variable name");
                 }
-                string value = groups[2].Value;
-                codeLine.lineDescription = $"set {variableName} to value {value}";
-                codeLine.lineType = LineType.VariableAssignment;
-                return codeLine;
+                string value = match.Groups[2].Value;
+                return new VariableLine(variableName, ParseValue(value));
             }
 
             internal static Value ParseValue(string value)
@@ -137,7 +135,7 @@ namespace ByteCraft.Parsing
                 }
                 if (VariableNameRegex.IsMatch(value))
                 {
-                    Variable var = Scope.CurrentScope.GetVariable(value);
+                    Variable var = Interpreter.currentThread.scopeStack.GetVariable(value);
                     return var.GetValue();
                 }
                 if (StringRegex.IsMatch(value))
@@ -164,12 +162,31 @@ namespace ByteCraft.Parsing
         {
             List<string> split = new List<string>();
             int start = 0;
+            bool inQuotes = false;
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == splitChar && !IsEscaped(input, i))
+                if (input[i] == splitChar && !inQuotes )
                 {
                     split.Add(input.Substring(start, i - start));
                     start = i + 1;
+                }
+                else
+                {
+                    if (input[i] == '"' )
+                    {
+                        if (!inQuotes)
+                        {
+                            inQuotes = true;
+                        }
+                        else
+                        {
+                            if (!IsEscaped(input,i))
+                            {
+                                inQuotes = false;
+                            }
+                        }
+                    }
+                
                 }
             }
             split.Add(input.Substring(start));

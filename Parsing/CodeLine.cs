@@ -1,9 +1,4 @@
-﻿using ByteCarft;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace ByteCraft.Parsing
 {
@@ -19,9 +14,12 @@ namespace ByteCraft.Parsing
     {
         public CodeFile file { get; internal set; }
         public int lineNumber { get; internal set; }
-        public string lineDescription { get; internal set; }
-        public LineType lineType { get; internal set;}
-        public Dictionary<string, Object> extraInfo { get; internal set; } = new Dictionary<string, Object>();
-        
+        public readonly LineType lineType;
+
+        public CodeLine(LineType type)
+        {
+            lineType = type;
+        }
+
     }
 }

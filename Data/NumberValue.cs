@@ -6,7 +6,7 @@ using ByteCraft.Data.OtherQualities;
 
 namespace ByteCraft.Data
 {
-    public class NumberValue : Value , IAddition<NumberValue>, Subtraction<NumberValue>, Multiplication<NumberValue>, Division<NumberValue>, InEquality<NumberValue>,IStringable
+    public class NumberValue : Value , IAddition<NumberValue>, Subtraction<NumberValue>, Multiplication<NumberValue>, Division<NumberValue>, InEquality<NumberValue>
     {
         public NumberValue(decimal value): base(value, ValueTypes.NUMBER)
         {
@@ -66,7 +66,7 @@ namespace ByteCraft.Data
             return new NumberValue(this.GetNumber() - val.GetNumber());
         }
 
-        public new string ToString()
+        public override string ToString()
         {
             return this.value.ToString();
         }

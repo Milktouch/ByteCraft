@@ -1,7 +1,7 @@
 using ByteCraft.Data.OtherQualities;
 
 namespace ByteCraft.Data{
-    public class BooleanValue : Value , IStringable
+    public class BooleanValue : Value 
     {
         public BooleanValue(bool value):base(value,ValueTypes.BOOLEAN)
         {
@@ -17,7 +17,7 @@ namespace ByteCraft.Data{
             return new BooleanValue((bool)this.value);
         }
 
-        public new string ToString()
+        public override string ToString()
         {
             return this.value.ToString();
         }

@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\ByteCraft.csproj": {}
+    "/Users/milktouch/Documents/GitHub/ByteCraft/ByteCraft.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\ByteCraft.csproj": {
+    "/Users/milktouch/Documents/GitHub/ByteCraft/ByteCraft.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\ByteCraft.csproj",
+        "projectUniqueName": "/Users/milktouch/Documents/GitHub/ByteCraft/ByteCraft.csproj",
         "projectName": "ByteCraft",
-        "projectPath": "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\ByteCraft.csproj",
-        "packagesPath": "C:\\Users\\Ilay\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ilay\\source\\repos\\ByteCraft\\obj\\",
+        "projectPath": "/Users/milktouch/Documents/GitHub/ByteCraft/ByteCraft.csproj",
+        "packagesPath": "/Users/milktouch/.nuget/packages/",
+        "outputPath": "/Users/milktouch/Documents/GitHub/ByteCraft/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Ilay\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/milktouch/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -64,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }

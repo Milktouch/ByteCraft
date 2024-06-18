@@ -1,36 +1,48 @@
 
-using ByteCarft;
+using ByteCraft;
 
 namespace ByteCraft.Scopes
 {
     internal class Scope
     {
         public Variable Result { get; internal set; }
-        internal CodeFile file { get; private set; }
-        internal long line { get; private set; }
-        internal readonly long startLine;
-        internal readonly long endLine;
-        internal Scope(CodeFile file, long line)
+        internal int line { get; private set; }
+        internal readonly Scope? parentScope;
+        private readonly Dictionary<string,Variable> scopeVariables = new();
+        internal readonly CodeFile file;
+        internal Scope(CodeFile file,Scope? parent)
         {
-            Result = new Variable("Result");
-            AddVariable(Result);
+            this.parentScope = parent;
             this.file = file;
-            this.startLine = line;
+            Result = new Variable("Result");
+            scopeVariables.Add("Result", Result);
         }
-
-        internal void AddVariable(Variable variable)
+        internal virtual Variable? GetVariable(string name)
         {
-            file.fileScope.variables.Add(variable.name, variable);
-        }
-
-        internal Variable GetVariable(string name)
-        {
-            if (file.fileScope.variables.ContainsKey(name))
+            if (scopeVariables.ContainsKey(name))
             {
-                return file.fileScope.variables[name];
+                return scopeVariables[name];
             }
-            return new Variable(name);
+            if (parentScope!=null)
+            {
+                return parentScope.GetVariable(name);
+            }
+            if (file.fileVariables.ContainsKey(name))
+            {
+                return file.fileVariables[name];
+            }
+            return null;
         }
+        
+        internal virtual void SetVariable(Variable variable)
+        {
+            if (!scopeVariables.ContainsKey(variable.name))
+                scopeVariables.Add(variable.name, variable);
+        }
+        
+
+        
+        
 
 
     }

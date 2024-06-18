@@ -16,18 +16,21 @@ namespace ByteCraft.BasicOperations
         public Write() { }
         public override Value Execute()
         {
-            Value? val = GetArgument(0);
-            if (val == null) {
-                throw new RuntimeError("Write operation requires a string argument");
-            }
-            if (val is IStringable)
+            Value[] values = this.arguments;
+            if (values.Length == 0)
             {
-                Console.WriteLine(((IStringable)val).ToString());
+                throw new RuntimeError("Write operation requires at least one argument");
             }
-            else
+            StringBuilder sb = new();
+            for (int i = 0; i < values.Length; i++)
             {
-                throw new RuntimeError($"argument of type {val.type} cannot be converted to string");
+                sb.Append(values[i]);
+                if (i!=values.Length-1)
+                {
+                    sb.Append(' ');
+                }
             }
+            Console.WriteLine(sb.ToString());
             return new NullValue();
         }
     }

@@ -15,5 +15,10 @@ namespace ByteCraft.Data
         {
             return this;
         }
+
+        public override string ToString()
+        {
+            return this.value.ToString();
+        }
     }
 }

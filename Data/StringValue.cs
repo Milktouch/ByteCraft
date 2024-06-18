@@ -3,7 +3,7 @@ using ByteCraft.Exceptions;
 
 namespace ByteCraft.Data
 {
-    public class StringValue : Value, IIndexable<StringValue>, IStringable
+    public class StringValue : Value, IIndexable<StringValue>
     {
         public StringValue(string value) : base(value, ValueTypes.STRING)
         {
@@ -45,7 +45,7 @@ namespace ByteCraft.Data
             return this.value;
         }
 
-        public new string ToString()
+        public override string ToString()
         {
             return this.value;
         }

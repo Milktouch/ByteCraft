@@ -1,20 +1,26 @@
-﻿using ByteCarft;
+﻿using ByteCraft;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ByteCraft.Exceptions;
 
 namespace ByteCraft.Scopes
 {
-    internal class FileScope
+    internal class FileScope : Scope
     {
-        private static Dictionary<string, FileScope> fileScopes = new Dictionary<string, FileScope>(); 
-        private FileScope(string fileName)
+        private static Dictionary<string, FileScope> fileScopes = new Dictionary<string, FileScope>();
+        
+        private readonly CodeFile codeFile;
+        private FileScope(string filename) : base(CodeFile.GetCodeFile(filename),null)
         {
-            this.fileName = fileName;
+            this.codeFile = CodeFile.GetCodeFile(filename);
+            if (codeFile==null)
+            {
+                throw new RuntimeError("File not found: " + filename);
+            }
         }
-
         internal static FileScope GetFileScope(string fileName)
         {
             if (!fileScopes.ContainsKey(fileName))
@@ -24,12 +30,17 @@ namespace ByteCraft.Scopes
             return fileScopes[fileName];
         }
 
-        internal readonly Dictionary<string, Variable> variables = new Dictionary<string, Variable>();
-        public string fileName { get; private set; }
-
-        internal void AddVariable(Variable variable)
+        internal override Variable? GetVariable(string name)
         {
-            variables.Add(variable.name, variable);
+            return codeFile.fileVariables[name];
+        }
+
+        internal override void SetVariable(Variable variable)
+        {
+            if (!codeFile.fileVariables.ContainsKey(variable.name))
+            {
+                codeFile.fileVariables.Add(variable.name,variable);
+            }
         }
     }
 }

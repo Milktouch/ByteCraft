@@ -36,7 +36,7 @@ namespace ByteCraft.Operations
         // a valid operation is a class that inherits from Operation
         // and also has a default constructor with 0 arguments
         // and lastly the class must have the OperationAttribute
-        public static List<OperationDefinition> GetValidOperationsInAssembly(Assembly asm) {
+        private static List<OperationDefinition> GetValidOperationsInAssembly(Assembly asm) {
             List<OperationDefinition> operations = new List<OperationDefinition>();
             foreach (Type type in asm.GetTypes())
             {
@@ -79,25 +79,21 @@ namespace ByteCraft.Operations
             return null;
         }
 
-        private static readonly Dictionary<string,OperationDefinition> operations = new Dictionary<string, OperationDefinition>();
+        private static readonly Dictionary<Assembly,OperationDefinition[]> loadedOperations = new Dictionary<Assembly, OperationDefinition[]>();
 
-        public static void LoadOperations(Assembly asm)
+        public static List<OperationDefinition> LoadOperations(Assembly asm)
         {
-            GetValidOperationsInAssembly(asm).ForEach(op => operations.Add(op.opName, op));
-        }
-
-        public static OperationDefinition? GetOperationDefinition(string name)
-        {
-            if (operations.ContainsKey(name))
+            if (loadedOperations.ContainsKey(asm))
             {
-                return operations[name];
+                return loadedOperations[asm].ToList();
             }
-            return null;
+            var operations = GetValidOperationsInAssembly(asm);
+            OperationDefinition.loadedOperations[asm] = operations.ToArray();
+            return operations;
         }
 
-        public static bool OperationExists(string name)
-        {
-            return operations.ContainsKey(name);
-        }
+        
+
+        
     }
 }

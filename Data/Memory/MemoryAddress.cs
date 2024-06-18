@@ -15,7 +15,7 @@ namespace ByteCraft.Data.Memory
         internal int offset;
         internal int size;
         internal int referenceCount { get{ return referenceCount; }  set { if (value == 0) Free(); referenceCount = value; } }
-        public string ToString()
+        public override string ToString()
         {
             return chunkIndex + ":" + offset + "#" + size;
         }

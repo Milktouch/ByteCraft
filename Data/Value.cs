@@ -61,5 +61,7 @@ namespace ByteCraft.Data
             throw new RuntimeError(type +" cannot be cast into " + typeof(T).Name);
         }
 
+        public abstract override string ToString();
+
     }
 }

@@ -1,5 +1,5 @@
 
-namespace ByteCarft
+namespace ByteCraft
 {
     internal class Line
     {
