@@ -7,14 +7,14 @@ namespace ByteCraft.Data
 
         public readonly string type;
         protected dynamic value{get;set;}
-        internal Value(dynamic value, string type)
+        protected Value(dynamic value, string type)
         {
             if(value == null && type != ValueTypes.NULL)
                 throw new System.ArgumentNullException();
             this.value = value;
             this.type = type;
         }
-        internal Value(string type)
+        protected Value(string type)
         {
             this.type = type;
         }
@@ -62,6 +62,7 @@ namespace ByteCraft.Data
         }
 
         public abstract override string ToString();
+        
 
     }
 }

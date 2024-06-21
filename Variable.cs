@@ -18,6 +18,7 @@ namespace ByteCraft
             {
                 this.name = name;
             }
+            this.value = new NullValue();
 
         }
         internal Variable(string name, Value value)

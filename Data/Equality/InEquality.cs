@@ -1,10 +1,10 @@
 namespace ByteCraft.Data.Equality
 {
-    public interface InEquality<T> where T : Value
+    public interface InEquality
     {
-        public BooleanValue GreaterThan(T value);
-        public BooleanValue LessThan(T value);
-        public BooleanValue GreaterThanOrEqual(T value);
-        public BooleanValue LessThanOrEqual(T value);
+        public BooleanValue GreaterThan(Value value);
+        public BooleanValue LessThan(Value value);
+        public BooleanValue GreaterThanOrEqual(Value value);
+        public BooleanValue LessThanOrEqual(Value value);
     }
 }

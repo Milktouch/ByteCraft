@@ -128,6 +128,10 @@ namespace ByteCraft.Parsing
             internal static Value ParseValue(string value)
             {
                 value = value.Trim();
+                if (value == "null")
+                {
+                    return new NullValue();
+                }
                 if (NumberRegex.IsMatch(value))
                 {
                     decimal number = decimal.Parse(value,NumberStyles.Any);

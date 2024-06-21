@@ -14,6 +14,7 @@ namespace ByteCraft.Data
         public static readonly string STRING = "String";
         public static readonly string NULL = "Null";
         public static readonly string REFERENCE = "Reference";
+        public static readonly string OPERATION = "Operation";
 
         // Short names
         public static readonly string BOOLEANshrt = "bol";

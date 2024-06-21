@@ -1,7 +1,7 @@
 namespace ByteCraft.Data.Arithmetic
 {
-    public interface Division<T> where T : Value
+    public interface Division
     {
-        public T Divide(T val);
+        public Value Divide(Value val);
     }
 }

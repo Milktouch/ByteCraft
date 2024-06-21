@@ -1,5 +1,6 @@
 
 using System.Reflection;
+using ByteCraft.Data;
 using ByteCraft.Operations;
 using ByteCraft.Scopes;
 
@@ -27,7 +28,7 @@ namespace ByteCraft
             var loadedOperations = OperationDefinition.LoadOperations(asm);
             foreach (var op in loadedOperations)
             {
-                operationsInFile[op.opName] = op;
+                AddOperation(op);
             }
         }
         
@@ -47,6 +48,8 @@ namespace ByteCraft
         
         internal void AddOperation(OperationDefinition op)
         {
+            OperationValue opValue = new OperationValue(op);
+            fileVariables[op.opName] = new Variable(op.opName, opValue);
             operationsInFile[op.opName] = op;
         }
         

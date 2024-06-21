@@ -1,3 +1,5 @@
+using ByteCraft.Exceptions;
+
 namespace ByteCraft.Data
 {
     public class NullValue : Value
@@ -13,7 +15,7 @@ namespace ByteCraft.Data
 
         public override string ToString()
         {
-            return "null";
+            return "";
         }
     }
 }

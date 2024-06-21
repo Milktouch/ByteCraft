@@ -5,11 +5,12 @@ namespace ByteCraft.Scopes
 {
     internal class Scope
     {
-        public Variable Result { get; internal set; }
-        internal int line { get; private set; }
-        internal readonly Scope? parentScope;
+        public readonly Variable Result;
+        public int line;
+        private readonly Scope? parentScope;
         private readonly Dictionary<string,Variable> scopeVariables = new();
         internal readonly CodeFile file;
+        internal ScopeType scopeType;
         internal Scope(CodeFile file,Scope? parent)
         {
             this.parentScope = parent;

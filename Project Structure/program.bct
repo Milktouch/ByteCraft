@@ -1,15 +1,1 @@
-write "hello, what is your name?"
-input
-name = Result
-write "hello",name,"nice to meet you"
-write "how old are you?"
-input
-age = Result
-write "what is your favorite color?"
-input
-color = Result
-write "your favorite color is",color , "that is a nice color"
-write "and"
-write "you are" , age , "years old"
-
-
+write{input{}}

@@ -13,8 +13,8 @@ namespace ByteCraft.Operations
 
         public readonly string opName;
         public readonly string opDescription;
-        public readonly ConstructorInfo constructorInfo;
-        public OperationDefinition(OperationAttribute metadata,ConstructorInfo constructor)
+        internal readonly ConstructorInfo constructorInfo;
+        internal OperationDefinition(OperationAttribute metadata,ConstructorInfo constructor)
         {
             this.opName = metadata.Name;
             this.opDescription = metadata.Description;
@@ -59,7 +59,7 @@ namespace ByteCraft.Operations
             return operations;
         }
 
-        public static OperationDefinition? GetOperationDefinitionFromType(Type t)
+        internal static OperationDefinition? GetOperationDefinitionFromType(Type t)
         {
             if (t.IsSubclassOf(typeof(Operation)))
             {
@@ -81,7 +81,7 @@ namespace ByteCraft.Operations
 
         private static readonly Dictionary<Assembly,OperationDefinition[]> loadedOperations = new Dictionary<Assembly, OperationDefinition[]>();
 
-        public static List<OperationDefinition> LoadOperations(Assembly asm)
+        internal static List<OperationDefinition> LoadOperations(Assembly asm)
         {
             if (loadedOperations.ContainsKey(asm))
             {
