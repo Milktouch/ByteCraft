@@ -2,6 +2,7 @@ using ByteCraft.Program;
 using ByteCraft.Data;
 using ByteCraft;
 using ByteCraft.Data.Arithmetic;
+using ByteCraft.Data.Equality;
 using ByteCraft.Data.OtherQualities;
 using ByteCraft.Exceptions;
 using ByteCraft.Operations;
@@ -278,6 +279,56 @@ namespace ByteCraft
                         tokens.RemoveAt(i);
                         tokens.RemoveAt(i);
                         i--;
+                    }
+                }
+            }
+            //look for comparison operations to do next
+            for (int i = 1; i < tokens.Count; i++)
+            {
+                Token token = tokens[i];
+                if (token.type == Token.Type.Operator)
+                {
+                    string op = token.stringValue;
+                    Value left = tokens[i - 1].value;   
+                    Value right = tokens[i + 1].value;
+                    Value result = null;
+                    try
+                    {
+                        switch (op)
+                        {
+                            case "==":
+                                result = new BooleanValue(left.AreEqual(right));
+                                break;
+                            case "!=":
+                                result = new BooleanValue(!left.AreEqual(right));
+                                break;
+                            case ">":
+                                InEquality greaterThan = left as InEquality;
+                               result = greaterThan.GreaterThan(right);
+                                break;
+                            case "<":
+                                InEquality lessThan = left as InEquality;
+                                result = lessThan.LessThan(right);
+                                break;
+                            case ">=":
+                                InEquality greaterThanOrEqual = left as InEquality;
+                                result = greaterThanOrEqual.GreaterThanOrEqual(right);
+                                break;
+                            case "<=":
+                                InEquality lessThanOrEqual = left as InEquality;
+                                result = lessThanOrEqual.LessThanOrEqual(right);
+                                break;
+                            default:
+                                throw new RuntimeError($"Operation {op} is not supported");
+                        }
+                        tokens[i - 1] = new Token(result, result.ToString());
+                        tokens.RemoveAt(i);
+                        tokens.RemoveAt(i);
+                        i--;
+                    }
+                    catch (System.InvalidCastException)
+                    {
+                        throw new RuntimeError($"Operation {op} is not supported by {left.type}");
                     }
                 }
             }

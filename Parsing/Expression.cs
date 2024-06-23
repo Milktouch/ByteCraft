@@ -44,6 +44,21 @@ internal class Expression
             ParseExpression();
         }
     }
+    private void ParseSpecialAction()
+    {
+        tokens.Add(new Token(Token.Type.SpecialAction, "@"));
+        string action = expression.Substring(1).TrimStart().Split(' ',2)[0];
+        if(action=="import")
+        {
+            tokens.Add(new Token(Token.Type.Import, "import"));
+            string importPath = expression.Substring(1).TrimStart().Split(' ',2)[1];
+            tokens.Add(new Token(new StringValue(importPath), importPath));
+        }
+        else
+        {
+            throw new SyntaxError($"Invalid special action {action}");
+        }
+    }
     private void ParseExpression()
     {
         bool inQuotes = false;
@@ -183,7 +198,6 @@ internal class Expression
             throw new RuntimeError($"Invalid character {c} at index {i}");
         }
     }
-    
     private int GetMatchingClosingBracket(int openingBracketIndex)
     {
         char openingBracket = expression[openingBracketIndex];
@@ -237,7 +251,6 @@ internal class Expression
         }
         throw new RuntimeError("No matching closing bracket found");
     }
-    
     private static bool IsOperator(char c)
     {
         return c=='+' || c=='-' || c=='*' || c=='/' || c=='%';
@@ -258,7 +271,6 @@ internal class Expression
         }
         return isEscaped;
     }
-    
     public override string ToString()
     {
         StringBuilder sb = new();

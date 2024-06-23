@@ -20,6 +20,7 @@ internal class Token
         Separator,
         Assignment,
         Import,
+        SpecialAction
         
     }
     public readonly Type type;
