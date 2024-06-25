@@ -5,7 +5,7 @@ using ByteCraft.Operations;
 namespace ByteCraft.BasicOperations;
 
 [Operation("int", "this operation parses the string argument to an integer")]
-public class ParseInt : Operation
+internal class ParseInt : Operation
 {
     public override Value Execute()
     {

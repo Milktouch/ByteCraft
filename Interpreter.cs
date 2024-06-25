@@ -127,6 +127,20 @@ namespace ByteCraft
                     i += 3;
                     continue;
                 }
+                //this is a list value
+                if (token.type == Token.Type.ValueGroupStart)
+                {
+                    SubExpression sub = tokens[i + 1] as SubExpression;
+                    List<Value> values = ParseValueGroup(sub.expression.Tokens);
+                    ListValue list = new ListValue();
+                    foreach (var val in values)
+                    {
+                        list.Add(val);
+                    }
+                    newTokens.Add(new Token(list, list.ToString()));
+                    i += 2;
+                    continue;
+                }
                 newTokens.Add(token);
             }
             newTokens = EvaluateIndexers(newTokens);

@@ -3,13 +3,11 @@ using ByteCraft.Data.OtherQualities;
 namespace ByteCraft.Data{
     public class BooleanValue : Value 
     {
-        public BooleanValue(bool value):base(value,ValueTypes.BOOLEAN)
+        
+        public readonly bool value;
+        public BooleanValue(bool value):base(ValueTypes.BOOLEAN)
         {
-        }
-
-        public bool GetBoolean()
-        {
-            return (bool)this.value;
+            this.value = value;
         }
 
         public override Value Copy()
@@ -20,6 +18,11 @@ namespace ByteCraft.Data{
         public override string ToString()
         {
             return this.value.ToString().ToLower();
+        }
+        
+        protected override object GetValue()
+        {
+            return this.value;
         }
     }
 }

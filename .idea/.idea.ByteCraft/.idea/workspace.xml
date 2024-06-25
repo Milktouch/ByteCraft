@@ -8,36 +8,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f28b0a-b40f-48e7-a108-5a3ff8c05edb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Data/Arithmetic/Modulo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/OperationValue.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/OtherQualities/Keyable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parsing/Expression.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parsing/ExpressionResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parsing/SubExpression.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parsing/Token.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scopes/ScopeType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuiltInOperations/IndexOf.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuiltInOperations/LenOp.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/ListValue.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ByteCraft/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ByteCraft/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Arithmetic/Addition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Arithmetic/Addition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Arithmetic/Division.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Arithmetic/Division.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Arithmetic/Multiplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Arithmetic/Multiplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Arithmetic/Subtraction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Arithmetic/Subtraction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicOperations/ParseInt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicOperations/ParseInt.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/BooleanValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/BooleanValue.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Equality/InEquality.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Equality/InEquality.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/NullValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/NullValue.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/NumberValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/NumberValue.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/OtherQualities/Indexable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/OtherQualities/Indexable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/OperationValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/OperationValue.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/ReferenceValue.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/StringValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/StringValue.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/Value.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Value.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/ValueTypes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/ValueTypes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Exceptions/RuntimeError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Exceptions/RuntimeError.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Exceptions/SyntaxError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Exceptions/SyntaxError.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Interpreter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operations/OperationAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Operations/OperationAttribute.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operations/OperationDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Operations/OperationDefinition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parsing/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Parsing/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parsing/Expression.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Parsing/Expression.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scopes/Scope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scopes/Scope.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scopes/ScopeStack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scopes/ScopeStack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project Structure/program.bct" beforeDir="false" afterPath="$PROJECT_DIR$/Project Structure/program.bct" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net7.0/ByteCraft.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net7.0/ByteCraft.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net7.0/ByteCraft.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net7.0/ByteCraft.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net7.0/ByteCraft.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net7.0/ByteCraft.csproj.CoreCompileInputs.cache" afterDir="false" />
@@ -137,7 +124,7 @@
       <updated>1718379189991</updated>
       <workItem from="1718379191834" duration="1104000" />
       <workItem from="1718380407936" duration="61805000" />
-      <workItem from="1718984118348" duration="723000" />
+      <workItem from="1718984118348" duration="9458000" />
     </task>
     <servers />
   </component>
@@ -155,16 +142,29 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Interpreter.cs</url>
-          <line>94</line>
+          <line>172</line>
           <properties documentPath="$PROJECT_DIR$/Interpreter.cs" containingFunctionPresentation="Method 'EvaluateIndexers'">
             <startOffsets>
-              <option value="3818" />
+              <option value="7067" />
             </startOffsets>
             <endOffsets>
-              <option value="3856" />
+              <option value="7119" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Parsing/Expression.cs</url>
+          <line>146</line>
+          <properties documentPath="$PROJECT_DIR$/Parsing/Expression.cs" containingFunctionPresentation="Method 'ParseExpression'">
+            <startOffsets>
+              <option value="5543" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5585" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

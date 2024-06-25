@@ -8,8 +8,10 @@ namespace ByteCraft.Data
 {
     public class NumberValue : Value , Addition, Subtraction, Multiplication, Division, InEquality , Modulo
     {
-        public NumberValue(decimal value): base(value, ValueTypes.NUMBER)
+        public readonly decimal value;
+        public NumberValue(decimal value): base(ValueTypes.NUMBER)
         {
+            this.value = value;
         }
 
         public Value Add(Value val)
@@ -19,7 +21,7 @@ namespace ByteCraft.Data
                 throw new RuntimeError("Cannot add a non-number to a number");
             }
             NumberValue numVal = val.As<NumberValue>();
-            return new NumberValue(this.GetNumber() + numVal.GetNumber());
+            return new NumberValue(this.value + numVal.value);
         }
 
         public override Value Copy()
@@ -34,16 +36,11 @@ namespace ByteCraft.Data
                 throw new RuntimeError("Cannot divide a number by a non-number");
             }
             NumberValue numVal = val.As<NumberValue>();
-            if (numVal.GetNumber() == 0)
+            if (numVal.value == 0)
             {
                 throw new RuntimeError("Cannot divide by Zero");
             }
-            return new NumberValue(this.GetNumber() / numVal.GetNumber());
-        }
-
-        public decimal GetNumber()
-        {
-            return (decimal)this.value;
+            return new NumberValue(this.value / numVal.value);
         }
 
         public BooleanValue GreaterThan(Value val)
@@ -53,7 +50,7 @@ namespace ByteCraft.Data
                 throw new RuntimeError("Cannot compare a number to a non-number");
             }
             NumberValue numVal = val.As<NumberValue>();
-            return new BooleanValue(this.GetNumber() > numVal.GetNumber());
+            return new BooleanValue(this.value > numVal.value);
         }
 
         public BooleanValue GreaterThanOrEqual(Value val)
@@ -63,7 +60,7 @@ namespace ByteCraft.Data
                 throw new RuntimeError("Cannot compare a number to a non-number");
             }
             NumberValue numVal = val.As<NumberValue>();
-           return new BooleanValue(this.GetNumber() >= numVal.GetNumber());
+           return new BooleanValue(this.value >= numVal.value);
         }
 
         public BooleanValue LessThan(Value val)
@@ -73,7 +70,7 @@ namespace ByteCraft.Data
                 throw new RuntimeError("Cannot compare a number to a non-number");
             }
             NumberValue numVal = val.As<NumberValue>();
-            return new BooleanValue(this.GetNumber() < numVal.GetNumber());
+            return new BooleanValue(this.value < numVal.value);
         }
 
         public BooleanValue LessThanOrEqual(Value val)
@@ -83,7 +80,7 @@ namespace ByteCraft.Data
                 throw new RuntimeError("Cannot compare a number to a non-number");
             }
             NumberValue numVal = val.As<NumberValue>();
-            return new BooleanValue(this.GetNumber() <= numVal.GetNumber());
+            return new BooleanValue(this.value <= numVal.value);
         }
 
         public Value Multiply(Value val)
@@ -93,7 +90,7 @@ namespace ByteCraft.Data
                 throw new RuntimeError("Cannot multiply a number by a non-number");
             }
             NumberValue numVal = val.As<NumberValue>();
-            return new NumberValue(this.GetNumber() * numVal.GetNumber());
+            return new NumberValue(this.value * numVal.value);
         }
 
         public Value Subtract(Value val)
@@ -103,7 +100,7 @@ namespace ByteCraft.Data
                 throw new RuntimeError("Cannot subtract a number by a non-number");
             }
             NumberValue numVal = val.As<NumberValue>();
-            return new NumberValue(this.GetNumber() - numVal.GetNumber());
+            return new NumberValue(this.value - numVal.value);
         }
         
         public Value Modulo(Value val)
@@ -113,12 +110,17 @@ namespace ByteCraft.Data
                 throw new RuntimeError("Cannot modulo a number by a non-number");
             }
             NumberValue numVal = val.As<NumberValue>();
-            return new NumberValue(this.GetNumber() % numVal.GetNumber());
+            return new NumberValue(this.value % numVal.value);
         }
 
         public override string ToString()
         {
             return this.value.ToString();
+        }
+
+        protected override object? GetValue()
+        {
+            return value;
         }
     }
 }

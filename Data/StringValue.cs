@@ -6,21 +6,23 @@ namespace ByteCraft.Data
 {
     public class StringValue : Value, Indexable , Addition
     {
-        public StringValue(string value) : base(value, ValueTypes.STRING)
+        public string value { private set; get; }
+        public StringValue(string value) : base(ValueTypes.STRING)
         {
+            this.value = value;
         }
 
         public override Value Copy()
         {
-            return new StringValue((String)this.value);
+            return new StringValue(this.value);
         }
 
         public Value GetValueAt(NumberValue val)
         {
-            decimal index = val.GetNumber();
+            decimal index = val.value;
             if (index < 0 || index >= value.Length)
             {
-                throw new RuntimeError($"Index {index} is  out of bounds (Current Length is {Length().GetNumber()}");
+                throw new RuntimeError($"Index {index} is  out of bounds (Current Length is {Length().value}");
             }
             return new StringValue(value[(int)index].ToString());
         }
@@ -32,10 +34,10 @@ namespace ByteCraft.Data
         {
             string other = otherVal.ToString();
             string newString = ToString();
-            int i = (int)index.GetNumber();
+            int i = (int)index.value;
             if (i < 0 || i >= newString.Length)
             {
-                throw new RuntimeError($"Index ({i}) is  out of bounds (Current Length is {Length().GetNumber()}");
+                throw new RuntimeError($"Index ({i}) is  out of bounds (Current Length is {Length().value}");
             }
             newString = newString.Remove(i,1).Insert(i, other);
             value = newString;
@@ -50,6 +52,10 @@ namespace ByteCraft.Data
         {
             return new StringValue(ToString()+val.ToString());
         }
-        
+
+        protected override object? GetValue()
+        {
+            return value;
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace ByteCraft.Data
 {
     public class NullValue : Value
     {
-        internal NullValue():base("\0",ValueTypes.NULL)
+        internal NullValue():base(ValueTypes.NULL)
         {
         }
 
@@ -16,6 +16,11 @@ namespace ByteCraft.Data
         public override string ToString()
         {
             return "";
+        }
+
+        protected override object GetValue()
+        {
+            return null;
         }
     }
 }

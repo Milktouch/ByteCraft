@@ -3,10 +3,10 @@ using ByteCraft.Operations;
 
 namespace ByteCraft.BasicOperations
 {
-    [Operation("input", "this operation reads a string from the standard console input")]
-    internal class Input : Operation
+    [Operation("read", "this operation reads a string from the standard console input")]
+    internal class Read : Operation
     {
-        public Input() { }
+        public Read() { }
         public override Value Execute()
         {
             string? input = Console.ReadLine();

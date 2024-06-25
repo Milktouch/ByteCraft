@@ -123,7 +123,7 @@ internal class Expression
             }
             if (c=='{')
             {
-                tokens.Add(new Token(Token.Type.Operation, "{"));
+                tokens.Add(new Token(Token.Type.ValueGroupStart, "{"));
                 int closingBracketIndex = GetMatchingClosingBracket(i);
                 string subExpression = expression.Substring(i + 1, closingBracketIndex - i - 1);
                 tokens.Add(new SubExpression( subExpression));

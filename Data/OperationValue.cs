@@ -5,12 +5,10 @@ namespace ByteCraft.Data;
 
 public class OperationValue : Value 
 {
-    internal OperationValue(OperationDefinition value) : base(value, ValueTypes.OPERATION)
+    internal readonly OperationDefinition value;
+    internal OperationValue(OperationDefinition value) : base(ValueTypes.OPERATION)
     {
-    }
-
-    public OperationValue(string type) : base(type)
-    {
+        this.value = value;
     }
 
     public override Value Copy()
@@ -25,7 +23,12 @@ public class OperationValue : Value
     
     public Value ExecuteOperation(Value[] args)
     {
-        OperationDefinition op = value as OperationDefinition;
+        OperationDefinition op = value;
         return op.ExecuteOperation(args);
+    }
+    
+    protected override object? GetValue()
+    {
+        return value;
     }
 }

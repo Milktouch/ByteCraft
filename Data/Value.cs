@@ -6,14 +6,6 @@ namespace ByteCraft.Data
     {
 
         public readonly string type;
-        protected dynamic value{get;set;}
-        protected Value(dynamic value, string type)
-        {
-            if(value == null && type != ValueTypes.NULL)
-                throw new System.ArgumentNullException();
-            this.value = value;
-            this.type = type;
-        }
         protected Value(string type)
         {
             this.type = type;
@@ -21,7 +13,7 @@ namespace ByteCraft.Data
         public virtual bool AreEqual(Value value){
             if(value.type != this.type)
                 return false;
-            return value.value == this.value;
+            return value.GetValue() == this.GetValue();
         }
         public static BooleanValue CreateValue(bool value){
             return new BooleanValue(value);
@@ -62,6 +54,8 @@ namespace ByteCraft.Data
         }
 
         public abstract override string ToString();
+        
+        protected abstract object? GetValue();
         
 
     }
